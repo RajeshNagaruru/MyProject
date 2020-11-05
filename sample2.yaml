@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  name: allow-from-openshift-metrics
+  namespace: kafka
+spec:
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          application: openshift-metrics
+    - podSelector: {}
+  podSelector: {}
+  policyTypes:
+  - Ingress
